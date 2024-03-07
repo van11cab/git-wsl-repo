@@ -7,4 +7,4 @@ dateVar=$(date +%Y%m%d)
 fullName="${commentVar}${dateVar}"
 
 
-zip -r outlines/$fullName.zip ./ -x ./*.zip
+zip -r outputs/$fullName.zip ./ -x ./*.zip
