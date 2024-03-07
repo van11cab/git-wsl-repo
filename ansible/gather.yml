@@ -1,0 +1,9 @@
+- hosts: localhost
+  #gather_facts: false
+  become: true
+  gather_subset:
+    - '!min'
+    - processor
+  tasks:
+    - ansible.builtin.debug:
+        var: ansible_facts

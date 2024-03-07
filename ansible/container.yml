@@ -1,0 +1,6 @@
+- name: create container
+  hosts: localhost
+  tasks:
+    - community.docker.docker_container:
+        name: c1
+        image: python

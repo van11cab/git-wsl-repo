@@ -1,0 +1,7 @@
+- name: play1
+  hosts: all
+  tasks:
+    - name: copy files
+      command: sleep 1
+    - name: configure web app
+      command: sleep 2
