@@ -1,0 +1,43 @@
+- name: Jenkins Preparation 
+  hosts: localhost
+  tags: prepare, certificates, java
+  become: true
+  tasks:
+  - name: Check for Appropriate Certificates
+    shell:
+      "sudo apt install ca-certificates"
+  - name: Prepare Java
+    shell:
+      sudo apt install fontconfig openjdk-17-jre 
+  - name: Installing Openjdk
+    community.general.snap:
+      name:
+      - openjdk
+  - name: Installing Java
+    shell:
+      openjdk version "17.0.8" 2023-07-18
+      OpenJDK Runtime Environment \(build 17.0.8+7-Debian-1deb12u1\)
+      OpenJDK 64-Bit Server VM \(build 17.0.8+7-Debian-1deb12u1, mixed mode, sharing\)
+
+
+- name: Running Jenkins
+  hosts: localhost
+  become: true
+  tags: run, jenkins
+  tasks:
+   - name: Download Jenkins Long-Term Release
+     shell: 
+        "sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \ https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+        echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \ https://pkg.jenkins.io/debian-stable binary/ | sudo tee \ /etc/apt/sources.list.d/jenkins.list > /dev/null"
+   - name: Install Jenkins
+     ansible.builtin.apt:
+      name: jenkins
+      state: present
+      update-cache: true
+   - name: Enabling Jenkins services
+     shell:
+      sudo systemctl enable jenkins
+   - name: Running Jenkins on Port 8080
+     ansible.builtin.systemd:
+      name: jenkins
+      state: started
