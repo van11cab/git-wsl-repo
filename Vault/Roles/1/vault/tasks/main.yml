@@ -1,5 +1,0 @@
----
-# tasks file for vault
-
-- name: Install vault
-  import_tasks: install.yml
