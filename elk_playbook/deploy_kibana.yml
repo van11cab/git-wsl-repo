@@ -2,7 +2,7 @@
   become: true
   vars:
    ansible_user: ubuntu
-   elastic_host: elastic
+   elastic_host: "{{ groups['elastic'][0] }}"
   roles:
 #    - role: Logstash
     - role: Kibana
