@@ -1,9 +1,9 @@
-- hosts: kibana_servers
+- hosts: kibana
   become: true
   vars:
    ansible_user: ubuntu
-   elastic_host: "54.149.157.55"
+   elastic_host: elastic
   roles:
-    - role: Logstash
+#    - role: Logstash
     - role: Kibana
     
