@@ -6,8 +6,8 @@ pipeline{
                 ansiblePlaybook become: true,
                 credentialsId: 'Ec2Connection',
                 disableHostKeyChecking: true,
-                inventory: 'elk_playbook/myinventory.ini',
-                playbook: 'elk_playbook/deploy_kibana.yml',
+                inventory: 'elk_playbook/deployments/myinventory.ini',
+                playbook: 'elk_playbook/deployments/deploy_kibana.yml',
                 vaultTmpPath: ''
             }
         }
@@ -16,8 +16,8 @@ pipeline{
                 ansiblePlaybook become: true,
                 credentialsId: 'Ec2Connection',
                 disableHostKeyChecking: true,
-                inventory: 'elk_playbook/myinventory.ini',
-                playbook: 'elk_playbook/deploy_vault.yml',
+                inventory: 'elk_playbook/deployments/myinventory.ini',
+                playbook: 'elk_playbook/deployments/deploy_vault.yml',
                 vaultTmpPath: ''
             }
         }
@@ -26,8 +26,8 @@ pipeline{
                 ansiblePlaybook become: true,
                 credentialsId: 'Ec2Connection',
                 disableHostKeyChecking: true,
-                inventory: 'elk_playbook/myinventory.ini',
-                playbook: 'elk_playbook/deploy_elastic.yml',
+                inventory: 'elk_playbook/deployments/myinventory.ini',
+                playbook: 'elk_playbook/deployments/deploy_elastic.yml',
                 vaultTmpPath: ''
     		}
         }
